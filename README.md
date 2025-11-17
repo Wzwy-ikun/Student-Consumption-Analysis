@@ -33,9 +33,9 @@ Student-Consumption-Analysis/
 │── Report/
 │     └── 高校学生消费行为分析报告.docx  # 完整版项目报告
 │── Supplement/
-      └── vlookup_notes.txt        # Excel 字段补全说明```
+      └── vlookup_notes.txt        # Excel 字段补全说明
 
-🧵 数据说明（Data Description）
+##🧵 数据说明（Data Description）
 1. Students（学生表）
 字段	含义
 student_id	学号
