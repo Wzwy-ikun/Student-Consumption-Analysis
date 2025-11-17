@@ -151,7 +151,8 @@ Tableau 建立学生表与消费表的多对一关系。
 
 建议与扩展方向
 🚀 如何复现项目（How to Reproduce）
-git clone https://github.com/你的账号/Student-Consumption-Analysis
+git clone https://github.com/
+Wzwy-ikun/Student-Consumption-Analysis
 cd Student-Consumption-Analysis
 1. 生成数据（可选）
 python Code/generate_data.py
