@@ -1,0 +1,62 @@
+import pandas as pd
+import numpy as np
+import random
+from faker import Faker
+
+fake = Faker("zh_CN")
+
+# ---------------------------
+# 1. 生成学生信息表
+# ---------------------------
+
+num_students = 300
+
+majors = ["金融学", "会计学", "电子信息", "计算机科学", "英语",
+          "工商管理", "大数据", "广告学", "数学与应用数学"]
+
+students = []
+
+for i in range(num_students):
+    student = {
+        "student_id": 20230000 + i,
+        "gender": random.choice(["male", "female"]),
+        "age": random.randint(18, 25),
+        "grade": random.randint(1, 4),
+        "major": random.choice(majors),
+        "family_income": random.randint(3000, 20000)
+    }
+    students.append(student)
+
+students_df = pd.DataFrame(students)
+
+# ---------------------------
+# 2. 生成消费记录表
+# ---------------------------
+
+categories = ["餐饮", "超市", "娱乐", "学习用品", "交通", "生活服务"]
+locations = ["一食堂", "二食堂", "校园超市", "图书馆", "打印店", "校门口", "体育馆"]
+pay_methods = ["校园卡", "微信", "支付宝"]
+
+records = []
+
+for stu in students:
+    num_records = random.randint(50, 200)  # 每位学生一年消费记录数量
+    for i in range(num_records):
+        record = {
+            "trans_id": fake.random_int(),
+            "student_id": stu["student_id"],
+            "amount": round(random.uniform(2, 80), 2),
+            "category": random.choice(categories),
+            "pay_method": random.choice(pay_methods),
+            "time": fake.date_time_between(start_date="-180d", end_date="now"),
+            "location": random.choice(locations)
+        }
+        records.append(record)
+
+transactions_df = pd.DataFrame(records)
+
+# 保存为CSV
+students_df.to_csv("students.csv", index=False, encoding="utf-8-sig")
+transactions_df.to_csv("transactions.csv", index=False, encoding="utf-8-sig")
+
+print("数据已成功生成并保存为 students.csv 和 transactions.csv")

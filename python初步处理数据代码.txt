@@ -1,0 +1,25 @@
+import pandas as pd
+
+students = pd.read_csv(r"C:\Users\Administrator\Desktop\高校数据分析\students.csv", encoding="utf-8-sig")
+transactions = pd.read_csv(r"C:\Users\Administrator\Desktop\高校数据分析\transactions.csv", encoding="utf-8-sig")
+
+students.head(), transactions.head()
+# 查看基本信息
+print(students.info())
+print(transactions.info())
+
+# 检查缺失值
+print(students.isnull().sum())
+print(transactions.isnull().sum())
+
+# 检查重复值
+print(students.duplicated().sum())
+print(transactions.duplicated().sum())
+transactions.describe()
+
+# 找出异常金额（一般不可能消费 > 200 元）
+transactions[transactions['amount'] > 200]
+transactions['time'] = pd.to_datetime(transactions['time'])
+transactions.info()  # 再次查看类型
+big_df = transactions.merge(students, on="student_id", how="left")
+big_df.head()
